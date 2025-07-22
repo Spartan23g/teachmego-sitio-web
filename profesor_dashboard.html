@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeachMeGo - Panel de Docente</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="logo"><a href="index.html">TeachMeGo</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html" id="logout-button" class="btn-secondary">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-content-wrapper">
+        <div class="background-image-container"></div>
+        <div class="login-container" id="docente-dashboard-container">
+            <h1>Bienvenido, Docente!</h1>
+            <p class="subtitle">Gestiona tu perfil y encuentra estudiantes.</p>
+
+            <h2>Mi Perfil</h2>
+            <form id="docente-profile-form">
+                <div class="form-group">
+                    <label for="docente-horas-disponibles" class="input-label">Horas Disponibles</label>
+                    <input type="text" id="docente-horas-disponibles" placeholder="Ej: L-V 9am-5pm" value="L-V 9am-5pm">
+                </div>
+                <div class="form-group">
+                    <label for="docente-materias" class="input-label">Materias que enseñas (separadas por coma)</label>
+                    <input type="text" id="docente-materias" placeholder="Ej: Matemáticas, Física" value="Matemáticas, Física, Programación">
+                </div>
+                <div class="form-group">
+                    <label for="docente-tarifa" class="input-label">Tarifa por hora</label>
+                    <input type="text" id="docente-tarifa" placeholder="Ej: $25/hora" value="$25/hora">
+                </div>
+                <div class="form-group">
+                    <label for="docente-bio" class="input-label">Biografía / Descripción</label>
+                    <textarea id="docente-bio" rows="4" placeholder="Cuéntale a los estudiantes sobre ti...">Doctor en Física con más de 10 años de experiencia enseñando a nivel universitario y pre-universitario. Me especializo en cálculos complejos y problemas de mecánica cúantica.</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="docente-upload-file" class="input-label">Subir Archivo para Perfil (PDF, DOC)</label>
+                    <input type="file" id="docente-upload-file" accept=".pdf,.doc,.docx">
+                    <p class="info-text" id="uploaded-file-name" style="display: none;"></p>
+                </div>
+                <button type="submit" class="option-btn">Actualizar Perfil</button>
+            </form>
+
+            <hr style="margin: 40px 0; border-color: rgba(123, 104, 238, 0.2);">
+
+            <h2>Encuentra Estudiantes</h2>
+            <p class="subtitle">Descubre estudiantes que buscan tus conocimientos.</p>
+            <button id="buscar-estudiantes-btn" class="option-btn teacher-btn">Ver Lista de Estudiantes Interesados</button>
+
+            <div id="lista-estudiantes-interesados" class="review-grid" style="margin-top: 20px;">
+                <p id="no-estudiantes-interesados-msg" style="display: none; color: #666; text-align: center;">No se encontraron estudiantes interesados en tus materias.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column contact-info">
+                <h3>Contáctanos</h3>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:g23biffi@gmail.com">g23biffi@gmail.com</a></p>
+                <p><i class="fas fa-phone"></i> +51 907 168 292</p><br>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:huaytafigueroajosefernando@gmail.com">huaytafigueroajosefernando@gmail.com</a></p>
+                <p><i class="fas fa-phone"></i> +51 986 720 376</p><br>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:jeanpierojinmy@gmail.com">jeanpierojinmy@gmail.com</a></p>
+                <p><i class="fas fa-phone"></i> +51 996 683 125</p>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> Huánuco, Perú</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TeachMeGo. Todos los derechos reservados.</p>
+            <p>Tu futuro empieza con el "docente perfecto".</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var estudiantesInteresados = [
+                { id: 1, nombre: 'Ana Gómez', busca: 'Clases de Matemáticas (Álgebra)', nivel: 'Secundaria', avatar: 'https://via.placeholder.com/150/ff4500/FFFFFF?text=AG' },
+                { id: 2, nombre: 'Luis Flores', busca: 'Reforzamiento de Física (Cinemática)', nivel: 'Pre-universitario', avatar: 'https://via.placeholder.com/150/8a2be2/FFFFFF?text=LF' },
+                { id: 3, nombre: 'Carla Díaz', busca: 'Introducción a la Programación con Python', nivel: 'Universitario (novato)', avatar: 'https://via.placeholder.com/150/00ced1/FFFFFF?text=CD' },
+                { id: 4, nombre: 'Diego Castro', busca: 'Ayuda con Proyecto de Química Orgánica', nivel: 'Universitario', avatar: 'https://via.placeholder.com/150/ff1493/FFFFFF?text=DC' }
+            ];
+
+            var listaEstudiantesInteresadosDiv = document.getElementById('lista-estudiantes-interesados');
+            var noEstudiantesInteresadosMsg = document.getElementById('no-estudiantes-interesados-msg');
+
+            var renderEstudiantesInteresados = function(estudiantesToRender) {
+                listaEstudiantesInteresadosDiv.innerHTML = '';
+                if (estudiantesToRender.length === 0) {
+                    noEstudiantesInteresadosMsg.style.display = 'block';
+                } else {
+                    noEstudiantesInteresadosMsg.style.display = 'none';
+                    estudiantesToRender.forEach(function(est) {
+                        var card = document.createElement('div');
+                        card.classList.add('review-card', 'estudiante-interesado-card');
+                        card.innerHTML = `
+                            <div class="review-header">
+                                <span class="user-avatar"><img src="${est.avatar}" alt="${est.nombre}"></span>
+                                <div class="user-info">
+                                    <h4>${est.nombre}</h4>
+                                    <span class="review-date">Nivel: ${est.nivel}</span>
+                                </div>
+                            </div>
+                            <p class="review-text">Busca: ${est.busca}</p>
+                            <button class="option-btn">Contactar</button>
+                        `;
+                        listaEstudiantesInteresadosDiv.appendChild(card);
+                    });
+                }
+            };
+
+            document.getElementById('buscar-estudiantes-btn').addEventListener('click', function() {
+                renderEstudiantesInteresados(estudiantesInteresados);
+            });
+
+            document.getElementById('docente-upload-file').addEventListener('change', function() {
+                var fileNameDisplay = document.getElementById('uploaded-file-name');
+                if (this.files && this.files.length > 0) {
+                    fileNameDisplay.textContent = `Archivo seleccionado: ${this.files[0].name}`;
+                    fileNameDisplay.style.display = 'block';
+                } else {
+                    fileNameDisplay.textContent = '';
+                    fileNameDisplay.style.display = 'none';
+                }
+            });
+
+            document.getElementById('docente-profile-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var horas = document.getElementById('docente-horas-disponibles').value;
+                var materias = document.getElementById('docente-materias').value;
+                var tarifa = document.getElementById('docente-tarifa').value;
+                var bio = document.getElementById('docente-bio').value;
+                var file = document.getElementById('docente-upload-file').files[0];
+
+                var mensaje = `Perfil actualizado:\nHoras: ${horas}\nMaterias: ${materias}\nTarifa: ${tarifa}\nBio: ${bio}`;
+                if (file) {
+                    mensaje += `\nArchivo: ${file.name}`;
+                }
+                alert(mensaje);
+            });
+
+            document.getElementById('logout-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Sesión cerrada.');
+                window.location.href = 'index.html';
+            });
+
+            document.querySelector('.logo a').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeachMeGo - Panel de Estudiante</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="logo"><a href="index.html">TeachMeGo</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html" id="logout-button" class="btn-secondary">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-content-wrapper">
+        <div class="background-image-container"></div>
+        <div class="login-container" id="student-dashboard-container">
+            <h1>Bienvenido, Estudiante!</h1>
+            <p class="subtitle">Selecciona tus cursos y busca profesores.</p>
+
+            <div class="form-group">
+                <label for="cursos-interes" class="input-label">Cursos de Interés</label>
+                <select id="cursos-interes" multiple size="5">
+                    <option value="matematicas">Matemáticas</option>
+                    <option value="fisica">Física</option>
+                    <option value="quimica">Química</option>
+                    <option value="literatura">Literatura</option>
+                    <option value="ingles">Inglés</option>
+                    <option value="programacion">Programación</option>
+                    <option value="historia">Historia</option>
+                    <option value="biologia">Biología</option>
+                    <option value="arte">Arte</option>
+                </select>
+                <p class="info-text">Puedes seleccionar varios cursos (mantén Ctrl/Cmd presionado y haz clic).</p>
+            </div>
+            <button id="buscar-profesores-btn" class="option-btn">Cargar y Buscar Profesores</button>
+
+            <h2>Profesores Disponibles</h2>
+            <div id="lista-profesores" class="review-grid" style="margin-top: 20px;">
+                <p id="no-profesores-msg" style="display: none; color: #666; text-align: center;">No se encontraron profesores con los cursos seleccionados.</p>
+            </div>
+
+            <hr style="margin: 40px 0; border-color: rgba(123, 104, 238, 0.2);">
+
+            <h2>Conecta con Otros Estudiantes</h2>
+            <p class="subtitle">Encuentra compañeros con intereses similares para estudiar juntos.</p>
+            <button id="match-estudiantes-btn" class="option-btn teacher-btn">Buscar Estudiantes (Match)</button>
+
+            <div id="lista-estudiantes-match" class="review-grid" style="margin-top: 20px;">
+                <p id="no-estudiantes-msg" style="display: none; color: #666; text-align: center;">No se encontraron estudiantes con intereses similares.</p>
+            </div>
+
+            <hr style="margin: 40px 0; border-color: rgba(123, 104, 238, 0.2);">
+
+            <button id="ver-mas-profesores" class="option-btn teacher-btn">No encuentro al docente... Ver más profesores </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column contact-info">
+                <h3>Contáctanos</h3>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:g23biffi@gmail.com">g23biffi@gmail.com</a></p>
+                <p><i class="fas fa-phone"></i> +51 907 168 292</p><br>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:huaytafigueroajosefernando@gmail.com">huaytafigueroajosefernando@gmail.com</a></p>
+                <p><i class="fas fa-phone"></i> +51 986 720 376</p><br>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:jeanpierojinmy@gmail.com">jeanpierojinmy@gmail.com</a></p>
+                <p><i class="fas fa-phone"></i> +51 996 683 125</p>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> Huánuco, Perú</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TeachMeGo. Todos los derechos reservados.</p>
+            <p>Tu futuro empieza con el "docente perfecto".</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var profesores = [
+                { id: 1, nombre: 'Dr. Alejandro García', materias: ['Matemáticas', 'Física', 'Química'], calificacion: 4.9, costo: '$25/hora', avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AG', bio: 'Doctor en Física con más de 10 años de experiencia enseñando a nivel universitario y pre-universitario. Me especializo en cálculos complejos y problemas de mecánica cuántica.' },
+                { id: 2, nombre: 'Lic. Sofía Robles', materias: ['Literatura', 'Inglés'], calificacion: 4.7, costo: '$20/hora', avatar: 'https://via.placeholder.com/150/28a745/FFFFFF?text=SR', bio: 'Licenciada en Letras, experta en redacción, gramática e inglés avanzado. Clases dinámicas y personalizadas para todas las edades.' },
+                { id: 3, nombre: 'Ing. Carlos Mendoza', materias: ['Programación', 'Matemáticas'], calificacion: 4.8, costo: '$30/hora', avatar: 'https://via.placeholder.com/150/dc3545/FFFFFF?text=CM', bio: 'Ingeniero de Software con pasión por la enseñanza. Domino Python, JavaScript y Java. Ayudo a estudiantes a entender la lógica de la programación.' },
+                { id: 4, nombre: 'Ms. Laura Torres', materias: ['Historia', 'Literatura'], calificacion: 4.5, costo: '$22/hora', avatar: 'https://via.placeholder.com/150/ffc107/FFFFFF?text=LT', bio: 'Máster en Historia Antigua. Hago que el pasado cobre vida con mis clases interactivas y material exclusivo. ¡Descubre la historia de una forma divertida!' },
+                { id: 5, nombre: 'Biól. Pedro Ruiz', materias: ['Biología', 'Química'], calificacion: 4.6, costo: '$23/hora', avatar: 'https://via.placeholder.com/150/17a2b8/FFFFFF?text=PR', bio: 'Biólogo apasionado por la vida. Clases de biología y química con enfoque práctico y experimental. Preparo para exámenes y proyectos de investigación.' }
+            ];
+
+            var estudiantesMatch = [
+                { id: 1, nombre: 'María Lopez', intereses: ['Matemáticas', 'Física'], busca: 'Compañeros para grupo de estudio', avatar: 'https://via.placeholder.com/150/fd7e14/FFFFFF?text=ML' },
+                { id: 2, nombre: 'David Sánchez', intereses: ['Programación', 'Inglés'], busca: 'Amigos para practicar conversación y código', avatar: 'https://via.placeholder.com/150/6f42c1/FFFFFF?text=DS' },
+                { id: 3, nombre: 'Elena Vásquez', intereses: ['Literatura', 'Historia'], busca: 'Lectores para club de lectura', avatar: 'https://via.placeholder.com/150/e83e8c/FFFFFF?text=EV' }
+            ];
+
+            var listaProfesoresDiv = document.getElementById('lista-profesores');
+            var noProfesoresMsg = document.getElementById('no-profesores-msg');
+            var listaEstudiantesMatchDiv = document.getElementById('lista-estudiantes-match');
+            var noEstudiantesMsg = document.getElementById('no-estudiantes-msg');
+
+            var renderProfesores = function(profesoresToRender) {
+                listaProfesoresDiv.innerHTML = '';
+                if (profesoresToRender.length === 0) {
+                    noProfesoresMsg.style.display = 'block';
+                } else {
+                    noProfesoresMsg.style.display = 'none';
+                    profesoresToRender.forEach(function(profe) {
+                        var card = document.createElement('div');
+                        card.classList.add('review-card', 'docente-card');
+                        card.innerHTML = `
+                            <div class="review-header">
+                                <span class="user-avatar"><img src="${profe.avatar}" alt="${profe.nombre}"></span>
+                                <div class="user-info">
+                                    <h4>${profe.nombre} <span class="badge positive">Disponible</span></h4>
+                                    <span class="review-date">Calificación: ${profe.calificacion} <i class="fas fa-star"></i></span>
+                                </div>
+                            </div>
+                            <p class="review-text">Materias: ${profe.materias.join(', ')}</p>
+                            <p class="review-text">Costo: ${profe.costo}</p>
+                            <button class="option-btn view-profile-btn" data-profesor-id="${profe.id}">Ver Perfil</button>
+                        `;
+                        listaProfesoresDiv.appendChild(card);
+                    });
+                }
+            };
+
+            var renderEstudiantesMatch = function(estudiantesToRender) {
+                listaEstudiantesMatchDiv.innerHTML = '';
+                if (estudiantesToRender.length === 0) {
+                    noEstudiantesMsg.style.display = 'block';
+                } else {
+                    noEstudiantesMsg.style.display = 'none';
+                    estudiantesToRender.forEach(function(est) {
+                        var card = document.createElement('div');
+                        card.classList.add('review-card', 'estudiante-match-card');
+                        card.innerHTML = `
+                            <div class="review-header">
+                                <span class="user-avatar"><img src="${est.avatar}" alt="${est.nombre}"></span>
+                                <div class="user-info">
+                                    <h4>${est.nombre}</h4>
+                                    <span class="review-date">Intereses: ${est.intereses.join(', ')}</span>
+                                </div>
+                            </div>
+                            <p class="review-text">Busca: ${est.busca}</p>
+                        `;
+                        listaEstudiantesMatchDiv.appendChild(card);
+                    });
+                }
+            };
+
+            document.getElementById('buscar-profesores-btn').addEventListener('click', function() {
+                var selectedCursos = Array.from(document.getElementById('cursos-interes').selectedOptions).map(function(option) { return option.value; });
+
+                if (selectedCursos.length === 0) {
+                    renderProfesores(profesores);
+                } else {
+                    var filteredProfesores = profesores.filter(function(profe) {
+                        return selectedCursos.some(function(curso) { return profe.materias.includes(curso); });
+                    });
+                    renderProfesores(filteredProfesores);
+                }
+            });
+
+            document.getElementById('match-estudiantes-btn').addEventListener('click', function() {
+                renderEstudiantesMatch(estudiantesMatch);
+            });
+
+            listaProfesoresDiv.addEventListener('click', function(event) {
+                if (event.target.classList.contains('view-profile-btn')) {
+                    var profesorId = parseInt(event.target.dataset.profesorId);
+                    var selectedProfe = profesores.find(function(profe) { return profe.id === profesorId; });
+                    if (selectedProfe) {
+                        alert(`Detalles del Profesor ${selectedProfe.nombre}:\nMaterias: ${selectedProfe.materias.join(', ')}\nCalificación: ${selectedProfe.calificacion}\nCosto: ${selectedProfe.costo}\nBio: ${selectedProfe.bio}`);
+                    }
+                }
+            });
+
+            document.getElementById('ver-mas-profesores').addEventListener('click', function() {
+                window.location.href = 'index (2).html';
+            });
+
+            document.getElementById('logout-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Sesión cerrada.');
+                window.location.href = 'index.html';
+            });
+
+            document.querySelector('.logo a').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'index.html';
+            });
+
+            renderProfesores(profesores);
+        });
+    </script>
+</body>
+</html>

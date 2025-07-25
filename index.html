@@ -3,199 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeachMeGo - Registro</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Inicio de Sesión y Registro</title>
+    <link rel="stylesheet" href="style (1).css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <header class="main-header">
         <nav class="main-nav">
-            <div class="logo"><a href="index.html">TeachMeGo</a></div>
+            <div class="logo">
+                <a href="#" id="home-link">TeachMeGo</a>
+            </div>
             <ul class="nav-links">
-                <li><a href="#community-section" id="enlace-nav-comunidad" data-target-section="community-section">Comunidad</a></li>
-                <li><a href="#" id="enlace-nav-como-funciona" data-target-section="how-it-works-section">Cómo Funciona</a></li>
-                <li><a href="#" id="enlace-nav-acerca-nosotros" data-target-section="about-us-section">Acerca de Nosotros</a></li>
-                <li><span id="mostrar-email-usuario" class="hidden user-display-info"></span></li>
-                <li><a href="#" id="boton-cerrar-sesion" class="btn-secondary hidden">Cerrar Sesión</a></li>
-                <li><a href="#" id="boton-inicio-sesion-cabecera" class="btn-secondary">Iniciar Sesión</a></li>
+                <li><a href="#" id="enlace-nav-comunidad">Comunidad</a></li>
+                <li><a href="#" id="enlace-nav-como-funciona">¿Cómo Funciona?</a></li>
+                <li><a href="#" id="enlace-nav-acerca-nosotros">Acerca de Nosotros</a></li>
             </ul>
+            <div class="header-auth-buttons">
+                <div id="user-info" class="user-session-info hidden">
+                    <span id="mostrar-email-usuario"></span>
+                    <button id="boton-cerrar-sesion" class="btn-secondary">Cerrar Sesión</button>
+                </div>
+                <button id="boton-inicio-sesion-cabecera" class="btn-secondary">Iniciar Sesión</button>
+            </div>
         </nav>
     </header>
 
-    <div class="main-content-wrapper">
-        <div class="background-image-container"></div>
-        <div class="initial-hero-section" id="seccion-hero-inicial">
-            <h1><span class="no-break">Conecta con el conocimiento</span><br>¡aprende o enseña!</h1>
-            <a href="#" id="btn-ir-a-registro-hero" class="btn-primary">Crear Cuenta</a>
-        </div>
-
-        <div class="login-container" id="contenedor-inicio-sesion">
-            <div id="pantalla-bienvenida" class="screen">
-                <h1>Bienvenido a TeachMeGo</h1>
-                <p class="subtitle">¡Conéctate con el aprendizaje que te impulsa!</p>
-                <div class="options-wrapper">
-                    <button id="btn-registrar-alumno" class="option-btn">Registrarme como Alumno</button>
-                    <button id="btn-registrar-docente" class="option-btn teacher-btn">Registrarme como Docente</button>
-                </div>
-                <p class="login-link">¿Ya tienes una cuenta? <a href="#" id="enlace-mostrar-inicio-sesion-desde-bienvenida">Iniciar Sesión</a></p>
-            </div>
-
-            <div id="formulario-registro-alumno" class="screen">
-                <h2>Registro de Alumno</h2>
-                <form id="form-registro-alumno">
-                    <div class="form-group"><label for="input-nombres-alumno" class="input-label">Nombres</label><input type="text" id="input-nombres-alumno" placeholder="Tus nombres" required></div>
-                    <div class="form-group"><label for="input-apellidos-alumno" class="input-label">Apellidos</label><input type="text" id="input-apellidos-alumno" placeholder="Tus apellidos" required></div>
-                    <div class="form-group"><label for="input-fecha-nacimiento-alumno" class="input-label">Fecha de Nacimiento</label><input type="date" id="input-fecha-nacimiento-alumno" required><p id="mostrar-edad-alumno" class="info-text"></p></div>
-                    <div class="form-group"><label for="select-sexo-alumno" class="input-label">Sexo</label><select id="select-sexo-alumno" required><option value="">Selecciona tu sexo</option><option value="masculino">Masculino</option><option value="femenino">Femenino</option><option value="otro">Otro</option></select></div>
-                    <div class="form-group"><label for="select-region-alumno" class="input-label">Región (Perú)</label><select id="select-region-alumno" required><option value="">Selecciona tu región</option><option value="lima">Lima</option><option value="arequipa">Arequipa</option><option value="cusco">Cusco</option><option value="huanuco">Huánuco</option><option value="otros">Otros</option></select></div>
-                    <div class="form-group"><label for="input-email-alumno" class="input-label">Correo Electrónico</label><input type="email" id="input-email-alumno" placeholder="tu.correo@example.com" required></div>
-                    <div class="form-group"><label for="input-password-alumno" class="input-label">Contraseña</label><input type="password" id="input-password-alumno" placeholder="Mínimo 6 caracteres" required></div>
-                    <div class="form-group"><label for="input-confirmar-password-alumno" class="input-label">Confirmar Contraseña</label><input type="password" id="input-confirmar-password-alumno" placeholder="Repite tu contraseña" required></div>
-                    <button type="submit" class="option-btn">Registrar Alumno</button>
-                </form>
-                <p class="back-link"><a href="#" id="btn-volver-bienvenida-alumno">← Volver</a></p>
-            </div>
-
-            <div id="formulario-registro-docente" class="screen">
-                <h2>Registro de Docente</h2>
-                <form id="form-registro-docente">
-                    <div class="form-group"><label for="input-nombres-docente" class="input-label">Nombres</label><input type="text" id="input-nombres-docente" placeholder="Tus nombres" required></div>
-                    <div class="form-group"><label for="input-apellidos-docente" class="input-label">Apellidos</label><input type="text" id="input-apellidos-docente" placeholder="Tus apellidos" required></div>
-                    <div class="form-group"><label for="input-fecha-nacimiento-docente" class="input-label">Fecha de Nacimiento</label><input type="date" id="input-fecha-nacimiento-docente" required><p id="mostrar-edad-docente" class="info-text"></p></div>
-                    <div class="form-group"><label for="select-sexo-docente" class="input-label">Sexo</label><select id="select-sexo-docente" required><option value="">Selecciona tu sexo</option><option value="masculino">Masculino</option><option value="femenino">Femenino</option><option value="otro">Otro</option></select></div>
-                    <div class="form-group"><label for="select-region-docente" class="input-label">Región (Perú)</label><select id="select-region-docente" required><option value="">Selecciona tu región</option><option value="lima">Lima</option><option value="arequipa">Arequipa</option><option value="cusco">Cusco</option><option value="huanuco">Huánuco</option><option value="otros">Otros</option></select></div>
-                    <div class="form-group"><label for="input-email-docente" class="input-label">Correo Electrónico</label><input type="email" id="input-email-docente" placeholder="tu.correo.docente@example.com" required></div>
-                    <div class="form-group"><label for="input-password-docente" class="input-label">Contraseña</label><input type="password" id="input-password-docente" placeholder="Mínimo 6 caracteres" required></div>
-                    <div class="form-group"><label for="input-confirmar-password-docente" class="input-label">Confirmar Contraseña</label><input type="password" id="input-confirmar-password-docente" placeholder="Repite tu contraseña" required></div>
-                    <button type="submit" class="option-btn teacher-btn">Registrar Docente</button>
-                </form>
-                <p class="back-link"><a href="#" id="btn-volver-bienvenida-docente">← Volver</a></p>
-            </div>
-
-            <div id="pantalla-inicio-sesion" class="screen">
-                <h2>Iniciar Sesión</h2>
-                <form id="form-inicio-sesion">
-                    <div class="form-group"><label for="input-email-inicio-sesion" class="input-label">Correo Electrónico</label><input type="email" id="input-email-inicio-sesion" placeholder="tu.correo@example.com" required></div>
-                    <div class="form-group"><label for="input-password-inicio-sesion" class="input-label">Contraseña</label><input type="password" id="input-password-inicio-sesion" placeholder="Tu contraseña" required></div>
-                    <button type="submit" class="option-btn">Acceder</button>
-                </form>
-                <p class="login-link">¿No tienes cuenta? <a href="#" id="enlace-mostrar-registro-desde-inicio-sesion">Crea una aquí</a></p>
-                <p class="back-link"><a href="#" id="btn-volver-bienvenida-inicio-sesion">← Volver</a></p>
-            </div>
-        </div>
-
-        <section id="community-section" class="community-section screen">
-            <div class="community-container">
-                <h2>Nuestra Comunidad Habla</h2>
-                <p class="subtitle">Descubre lo que nuestros usuarios piensan y comparte tus propias ideas.</p>
-                <div class="review-grid" id="cuadrilla-resenas">
-                    <div class="review-card" data-review-id="review-1">
-                        <div class="review-header">
-                            <span class="user-avatar"><i class="fas fa-user-circle"></i></span>
-                            <div class="user-info">
-                                <h4>JuanPérez23 <span class="badge positive">Excelente</span></h4>
-                                <span class="review-date">15 de Julio, 2025</span>
-                            </div>
-                            <button class="delete-review-btn hidden" data-review-id="review-1"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                        </div>
-                        <p class="review-text">"¡Increíble plataforma! Encontré al profesor perfecto para mis clases de matemáticas en solo un día. La interfaz es muy intuitiva y fácil de usar."</p>
-                        <div class="review-actions">
-                            <span><i class="fas fa-star"></i> 5.0</span>
-                            <span><i class="fas fa-thumbs-up"></i> 12</span>
-                            <span><i class="fas fa-comment"></i> 3</span>
-                        </div>
-                    </div>
-                    <div class="review-card" data-review-id="review-2">
-                        <div class="review-header">
-                            <span class="user-avatar"><i class="fas fa-user-circle"></i></span>
-                            <div class="user-info">
-                                <h4>AnaGarcía_Profe <span class="badge neutral">Sugerencia</span></h4>
-                                <span class="review-date">10 de Julio, 2025</span>
-                            </div>
-                            <button class="delete-review-btn hidden" data-review-id="review-2"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                        </div>
-                        <p class="review-text">"Me gustaría que se añadiera una opción para videollamadas integradas directamente en la plataforma. Por lo demás, la búsqueda de alumnos es fantástica."</p>
-                        <div class="review-actions">
-                            <span><i class="fas fa-star"></i> 4.5</span>
-                            <span><i class="fas fa-thumbs-up"></i> 8</span>
-                            <span><i class="fas fa-comment"></i> 5</span>
-                        </div>
-                    </div>
-                    <div class="review-card" data-review-id="review-3">
-                        <div class="review-header">
-                            <span class="user-avatar"><i class="fas fa-user-circle"></i></span>
-                            <div class="user-info">
-                                <h4>Carlos_Estudiante <span class="badge positive">Muy útil</span></h4>
-                                <span class="review-date">08 de Julio, 2025</span>
-                            </div>
-                            <button class="delete-review-btn hidden" data-review-id="review-3"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                        </div>
-                        <p class="review-text">"La función de filtro es muy buena. Pude encontrar profesores cerca de mi zona en Lima, Perú, y con disponibilidad en mi horario. ¡Excelente!"</p>
-                        <div class="review-actions">
-                            <span><i class="fas fa-star"></i> 4.8</span>
-                            <span><i class="fas fa-thumbs-up"></i> 15</span>
-                            <span><i class="fas fa-comment"></i> 2</span>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-primary post-review-btn" id="btn-mostrar-formulario-resena">Dejar un Comentario</button>
-                <div id="contenedor-formulario-resena" class="hidden">
-                    <h3>Escribe tu Reseña</h3>
-                    <form id="formulario-resena" class="review-form">
-                        <div class="form-group"><label for="input-email-resena" class="input-label">Tu Correo Electrónico</label><input type="email" id="input-email-resena" placeholder="Ingresa tu correo registrado" required></div>
-                        <div class="form-group"><label for="input-texto-resena" class="input-label">Tu Comentario</label><textarea id="input-texto-resena" placeholder="Comparte tu experiencia o sugerencia" rows="5" required></textarea></div>
-                        <div class="form-group"><label for="input-calificacion-resena" class="input-label">Calificación (1-5)</label><input type="number" id="input-calificacion-resena" min="1" max="5" value="5" required></div>
-                        <div class="form-group"><label for="select-tipo-resena" class="input-label">Tipo de Comentario</label><select id="select-tipo-resena" required><option value="positive">Positivo</option><option value="neutral">Sugerencia</option><option value="negative">Problema</option></select></div>
-                        <div class="form-actions">
-                            <button type="submit" class="option-btn">Enviar Reseña</button>
-                            <button type="button" id="btn-cancelar-resena" class="btn-secondary">Cancelar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <section id="how-it-works-section" class="how-it-works-section screen">
-            <div class="how-it-works-container">
-                <h2>Cómo Funciona TeachMeGo</h2>
-                <p class="subtitle">Descubre lo sencillo que es empezar a aprender o enseñar con nosotros.</p>
-                <div class="steps-grid">
-                    <div class="step-card"><span class="step-icon"><i class="fas fa-user-plus"></i></span><h3>1. Regístrate o Inicia Sesión</h3><p>Accede a la plataforma, ya seas alumno o docente, para comenzar tu experiencia personalizada.</p></div>
-                    <div class="step-card"><span class="step-icon"><i class="fas fa-cogs"></i></span><h3>2. Configura tu Perfil</h3><p>Completa tus datos para que podamos ofrecerte el mejor servicio y conexiones relevantes.</p></div>
-                    <div class="step-card"><span class="step-icon"><i class="fas fa-search"></i></span><h3>3. Busca tu Docente Ideal</h3><p>Explora perfiles, reseñas y comentarios para encontrar al docente perfecto cerca de ti.</p></div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="about-us-section" class="content-section screen">
-            <div class="container">
-                <h2>Acerca de Nosotros</h2>
-                <div class="mission-vision-grid">
-                    <div class="card"><h3>Nuestra Visión</h3><p>Ser la plataforma líder en Perú para la conexión de alumnos y docentes, impulsando la educación personalizada y de calidad en cada rincón del país.</p></div>
-                    <div class="card"><h3>Nuestra Misión</h3><p>Facilitar el acceso a una educación adaptada a las necesidades individuales, conectando a estudiantes con profesores calificados y apasionados, y fomentando una comunidad de aprendizaje colaborativa y efectiva.</p></div>
-                </div>
-            </div>
-        </section>
+    <div class="initial-hero-section" id="hero-section">
+        <h1>Conecta con tu <span class="no-break">profesor ideal</span> <br>o encuentra <span class="no-break">alumnos hoy</span></h1>
+        <button id="btn-ir-a-registro-hero" class="btn-primary">¡Quiero Empezar!</button>
     </div>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-column contact-info">
-                <h3>Contáctanos</h3>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:g23biffi@gmail.com">g23biffi@gmail.com</a></p>
-                <p><i class="fas fa-phone"></i> +51 907 168 292</p><br>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:huaytafigueroajosefernando@gmail.com">huaytafigueroajosefernando@gmail.com</a></p>
-                <p><i class="fas fa-phone"></i> +51 986 720 376</p><br>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:jeanpierojinmy@gmail.com">jeanpierojinmy@gmail.com</a></p>
-                <p><i class="fas fa-phone"></i> +51 996 683 125</p>
-                <p class="location"><i class="fas fa-map-marker-alt"></i> Huánuco, Perú</p>
+    <div class="login-container" id="login-register-container">
+        <div id="pantalla-bienvenida" class="screen active">
+            <h2>Bienvenido</h2>
+            <p class="subtitle">Selecciona cómo quieres continuar</p>
+            <div class="options-wrapper">
+                <button id="btn-registrar-alumno" class="option-btn student-btn">Registrar como Alumno</button>
+                <button id="btn-registrar-docente" class="option-btn teacher-btn">Registrar como Profesor</button>
+            </div>
+            <p class="login-link">¿Ya tienes cuenta? <a href="#" id="enlace-mostrar-inicio-sesion-desde-bienvenida">Inicia Sesión aquí</a></p>
+            <p class="back-link"><a href="#" id="btn-volver-bienvenida-inicio-sesion">Volver al inicio</a></p>
+        </div>
+
+        <div id="pantalla-inicio-sesion" class="screen">
+            <h2>Iniciar Sesión</h2>
+            <form id="form-inicio-sesion">
+                <div class="form-group">
+                    <label for="input-email-inicio-sesion" class="input-label">Email:</label>
+                    <input type="email" id="input-email-inicio-sesion" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-password-inicio-sesion" class="input-label">Contraseña:</label>
+                    <input type="password" id="input-password-inicio-sesion" required>
+                </div>
+                <button type="submit" class="option-btn">Iniciar Sesión</button>
+            </form>
+            <p class="login-link">¿No tienes cuenta? <a href="#" id="enlace-mostrar-registro-desde-inicio-sesion">Regístrate aquí</a></p>
+            <p class="back-link"><a href="#" id="btn-volver-inicio-sesion">Volver</a></p>
+        </div>
+
+        <div id="form-registro-alumno" class="screen">
+            <h2>Registro de Alumno</h2>
+            <form>
+                <div class="form-group">
+                    <label for="input-nombre-alumno" class="input-label">Nombre:</label>
+                    <input type="text" id="input-nombre-alumno" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-apellidos-alumno" class="input-label">Apellidos:</label>
+                    <input type="text" id="input-apellidos-alumno" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-fecha-nacimiento-alumno" class="input-label">Fecha de Nacimiento:</label>
+                    <input type="date" id="input-fecha-nacimiento-alumno" required>
+                    <p id="mostrar-edad-alumno" class="info-text"></p>
+                </div>
+                <div class="form-group">
+                    <label for="select-sexo-alumno" class="input-label">Sexo:</label>
+                    <select id="select-sexo-alumno" required>
+                        <option value="">Selecciona</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="select-region-alumno" class="input-label">Región:</label>
+                    <select id="select-region-alumno" required>
+                        <option value="">Selecciona</option>
+                        <option value="lima">Lima</option>
+                        <option value="arequipa">Arequipa</option>
+                        <option value="cusco">Cusco</option>
+                        <option value="trujillo">Trujillo</option>
+                        <option value="chiclayo">Chiclayo</option>
+                        <option value="piura">Piura</option>
+                        <option value="huancayo">Huancayo</option>
+                        <option value="tacna">Tacna</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="input-email-alumno" class="input-label">Email:</label>
+                    <input type="email" id="input-email-alumno" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-password-alumno" class="input-label">Contraseña:</label>
+                    <input type="password" id="input-password-alumno" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-confirmar-password-alumno" class="input-label">Confirmar Contraseña:</label>
+                    <input type="password" id="input-confirmar-password-alumno" required>
+                </div>
+                <button type="submit" class="option-btn student-btn">Registrar Alumno</button>
+            </form>
+            <p class="back-link"><a href="#" id="btn-volver-bienvenida-alumno">Volver</a></p>
+        </div>
+
+        <div id="form-registro-profesor" class="screen">
+            <h2>Registro de Profesor</h2>
+            <form>
+                <div class="form-group">
+                    <label for="input-nombre-profesor" class="input-label">Nombre:</label>
+                    <input type="text" id="input-nombre-profesor" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-apellidos-profesor" class="input-label">Apellidos:</label>
+                    <input type="text" id="input-apellidos-profesor" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-fecha-nacimiento-profesor" class="input-label">Fecha de Nacimiento:</label>
+                    <input type="date" id="input-fecha-nacimiento-profesor" required>
+                    <p id="mostrar-edad-profesor" class="info-text"></p>
+                </div>
+                <div class="form-group">
+                    <label for="select-sexo-profesor" class="input-label">Sexo:</label>
+                    <select id="select-sexo-profesor" required>
+                        <option value="">Selecciona</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="select-region-profesor" class="input-label">Región:</label>
+                    <select id="select-region-profesor" required>
+                        <option value="">Selecciona</option>
+                        <option value="lima">Lima</option>
+                        <option value="arequipa">Arequipa</option>
+                        <option value="cusco">Cusco</option>
+                        <option value="trujillo">Trujillo</option>
+                        <option value="chiclayo">Chiclayo</option>
+                        <option value="piura">Piura</option>
+                        <option value="huancayo">Huancayo</option>
+                        <option value="tacna">Tacna</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="input-email-profesor" class="input-label">Email:</label>
+                    <input type="email" id="input-email-profesor" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-password-profesor" class="input-label">Contraseña:</label>
+                    <input type="password" id="input-password-profesor" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-confirmar-password-profesor" class="input-label">Confirmar Contraseña:</label>
+                    <input type="password" id="input-confirmar-password-profesor" required>
+                </div>
+                <button type="submit" class="option-btn teacher-btn">Registrar Profesor</button>
+            </form>
+            <p class="back-link"><a href="#" id="btn-volver-bienvenida-docente">Volver</a></p>
+        </div>
+    </div>
+
+    <section id="community-section" class="content-section">
+        <h2>Lo que nuestros usuarios dicen</h2>
+        <p>Descubre las experiencias de alumnos y profesores que ya son parte de nuestra comunidad.</p>
+        <button id="btn-mostrar-formulario-resena" class="btn-primary">¡Deja tu Reseña!</button>
+        <div id="review-form-container" class="hidden">
+            <h3>Envía tu Reseña</h3>
+            <form id="formulario-resena">
+                <div class="form-group">
+                    <label for="input-email-resena" class="input-label">Tu Email:</label>
+                    <input type="email" id="input-email-resena" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="select-tipo-resena" class="input-label">Tipo de Reseña:</label>
+                    <select id="select-tipo-resena" required>
+                        <option value="positive">Positiva</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="negative">Negativa</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="input-calificacion-resena" class="input-label">Calificación (1-5):</label>
+                    <input type="number" id="input-calificacion-resena" min="1" max="5" step="0.5" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-texto-resena" class="input-label">Tu Reseña:</label>
+                    <textarea id="input-texto-resena" rows="5" placeholder="Comparte tu experiencia..." required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="btn-cancelar-resena" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Enviar Reseña</button>
+                </div>
+            </form>
+        </div>
+        <div class="review-grid">
+        </div>
+    </section>
+
+    <section id="how-it-works-section" class="content-section">
+        <h2>¿Cómo Funciona?</h2>
+        <p class="subtitle">Descubre la simplicidad de encontrar o ser el profesor perfecto.</p>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+                <h3>1. Regístrate Fácilmente</h3>
+                <p>Crea tu perfil en segundos, ya seas alumno o profesor.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-search"></i></div>
+                <h3>2. Encuentra o Sé Encontrado</h3>
+                <p>Alumnos, busquen por materia, ubicación y más. Profesores, su perfil es visible para potenciales alumnos.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-handshake"></i></div>
+                <h3>3. Conecta y Aprende</h3>
+                <p>Envía mensajes, coordina clases y empieza a aprender o enseñar de inmediato.</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 TeachMeGo. Todos los derechos reservados.</p>
-            <p>Tu futuro empieza con el "docente perfecto".</p>
+    </section>
+
+    <section id="about-us-section" class="content-section">
+        <h2>Acerca de Nosotros</h2>
+        <p class="subtitle">Conoce nuestra misión y visión para revolucionar la educación.</p>
+        <div class="mission-vision-grid">
+            <div class="card">
+                <h3>Nuestra Misión</h3>
+                <p>Democratizar el acceso a la educación de calidad, conectando a alumnos y profesores de manera eficiente y segura.</p>
+            </div>
+            <div class="card">
+                <h3>Nuestra Visión</h3>
+                <p>Ser la plataforma líder en Latinoamérica para la conexión educativa, fomentando el aprendizaje continuo y el desarrollo profesional.</p>
+            </div>
         </div>
-    </footer>
-     <script src="script (1).js"></script>
+    </section>
+
+    <div class="background-image-container"></div>
+    <script src="script (1).js"></script>
 </body>
 </html>

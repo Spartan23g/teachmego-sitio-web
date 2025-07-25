@@ -1,11 +1,108 @@
-<!DOCTYPE html>
+<OCTYPE html>
 <html lang="es">
-<head>
+<head>!D
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeachMeGo - Panel de Estudiante</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .favorite-btn {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .favorite-btn:hover {
+            background-color: #e0a800;
+        }
+        .favorite-btn.added {
+            background-color: #28a745;
+        }
+        .favorite-btn.added:hover {
+            background-color: #218838;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            text-align: center;
+            color: #333;
+        }
+        .modal-content h3 {
+            color: #7b68ee;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .modal-content img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #7b68ee;
+        }
+        .modal-content p {
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            line-height: 1.4;
+        }
+        .modal-content .rating-stars {
+            color: #ffc107;
+            margin-top: 10px;
+            font-size: 1.3em;
+        }
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        .rating {
+            margin-top: 15px;
+        }
+        .rating .star {
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #ccc;
+        }
+        .rating .star.selected {
+            color: #ffc107;
+        }
+    </style>
 </head>
 <body>
     <header class="main-header">
@@ -26,38 +123,46 @@
             <div class="form-group">
                 <label for="cursos-interes" class="input-label">Cursos de Interés</label>
                 <select id="cursos-interes" multiple size="5">
-                    <option value="matematicas">Matemáticas</option>
-                    <option value="fisica">Física</option>
-                    <option value="quimica">Química</option>
-                    <option value="literatura">Literatura</option>
-                    <option value="ingles">Inglés</option>
-                    <option value="programacion">Programación</option>
-                    <option value="historia">Historia</option>
-                    <option value="biologia">Biología</option>
-                    <option value="arte">Arte</option>
+                    <option value="Matemáticas">Matemáticas</option>
+                    <option value="Física">Física</option>
+                    <option value="Química">Química</option>
+                    <option value="Literatura">Literatura</option>
+                    <option value="Inglés">Inglés</option>
+                    <option value="Programación">Programación</option>
+                    <option value="Historia">Historia</option>
+                    <option value="Biología">Biología</option>
+                    <option value="Arte">Arte</option>
                 </select>
                 <p class="info-text">Puedes seleccionar varios cursos (mantén Ctrl/Cmd presionado y haz clic).</p>
             </div>
-            <button id="buscar-profesores-btn" class="option-btn">Cargar y Buscar Profesores</button>
+            <button id="search-prof-btn" class="option-btn">Cargar y Buscar Profesores</button>
 
             <h2>Profesores Disponibles</h2>
-            <div id="lista-profesores" class="review-grid" style="margin-top: 20px;">
-                <p id="no-profesores-msg" style="display: none; color: #666; text-align: center;">No se encontraron profesores con los cursos seleccionados.</p>
+            <div id="prof-list" class="review-grid" style="margin-top: 20px;">
+                <p id="no-prof-msg" style="display: none; color: #666; text-align: center;">No se encontraron profesores con los cursos seleccionados.</p>
+            </div>
+
+            <hr style="margin: 40px 0; border-color: rgba(123, 104, 238, 0.2);">
+
+            <h2>Profesores Favoritos</h2>
+            <p class="subtitle">Aquí están tus docentes preferidos.</p>
+            <div id="fav-prof-list" class="review-grid" style="margin-top: 20px;">
+                <p id="no-fav-prof-msg" style="display: block; color: #666; text-align: center;">Aún no has añadido profesores a favoritos.</p>
             </div>
 
             <hr style="margin: 40px 0; border-color: rgba(123, 104, 238, 0.2);">
 
             <h2>Conecta con Otros Estudiantes</h2>
             <p class="subtitle">Encuentra compañeros con intereses similares para estudiar juntos.</p>
-            <button id="match-estudiantes-btn" class="option-btn teacher-btn">Buscar Estudiantes (Match)</button>
+            <button id="match-est-btn" class="option-btn teacher-btn">Buscar Estudiantes (Match)</button>
 
-            <div id="lista-estudiantes-match" class="review-grid" style="margin-top: 20px;">
-                <p id="no-estudiantes-msg" style="display: none; color: #666; text-align: center;">No se encontraron estudiantes con intereses similares.</p>
+            <div id="est-match-list" class="review-grid" style="margin-top: 20px;">
+                <p id="no-est-msg" style="display: none; color: #666; text-align: center;">No se encontraron estudiantes con intereses similares.</p>
             </div>
 
             <hr style="margin: 40px 0; border-color: rgba(123, 104, 238, 0.2);">
 
-            <button id="ver-mas-profesores" class="option-btn teacher-btn">No encuentro al docente... Ver más profesores </button>
+            <button id="more-prof-btn" class="option-btn teacher-btn">No encuentro al docente... Ver más profesores </button>
         </div>
     </div>
 
@@ -80,120 +185,252 @@
         </div>
     </footer>
 
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img id="modal-avatar" src="" alt="Avatar">
+            <h3 id="modal-name"></h3>
+            <p id="modal-details"></p>
+            <p id="modal-bio"></p>
+            <div id="modal-rating" class="rating" style="display: none;">
+                <p>Tu calificación:</p>
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var profesores = [
-                { id: 1, nombre: 'Dr. Alejandro García', materias: ['Matemáticas', 'Física', 'Química'], calificacion: 4.9, costo: '$25/hora', avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AG', bio: 'Doctor en Física con más de 10 años de experiencia enseñando a nivel universitario y pre-universitario. Me especializo en cálculos complejos y problemas de mecánica cuántica.' },
-                { id: 2, nombre: 'Lic. Sofía Robles', materias: ['Literatura', 'Inglés'], calificacion: 4.7, costo: '$20/hora', avatar: 'https://via.placeholder.com/150/28a745/FFFFFF?text=SR', bio: 'Licenciada en Letras, experta en redacción, gramática e inglés avanzado. Clases dinámicas y personalizadas para todas las edades.' },
-                { id: 3, nombre: 'Ing. Carlos Mendoza', materias: ['Programación', 'Matemáticas'], calificacion: 4.8, costo: '$30/hora', avatar: 'https://via.placeholder.com/150/dc3545/FFFFFF?text=CM', bio: 'Ingeniero de Software con pasión por la enseñanza. Domino Python, JavaScript y Java. Ayudo a estudiantes a entender la lógica de la programación.' },
-                { id: 4, nombre: 'Ms. Laura Torres', materias: ['Historia', 'Literatura'], calificacion: 4.5, costo: '$22/hora', avatar: 'https://via.placeholder.com/150/ffc107/FFFFFF?text=LT', bio: 'Máster en Historia Antigua. Hago que el pasado cobre vida con mis clases interactivas y material exclusivo. ¡Descubre la historia de una forma divertida!' },
-                { id: 5, nombre: 'Biól. Pedro Ruiz', materias: ['Biología', 'Química'], calificacion: 4.6, costo: '$23/hora', avatar: 'https://via.placeholder.com/150/17a2b8/FFFFFF?text=PR', bio: 'Biólogo apasionado por la vida. Clases de biología y química con enfoque práctico y experimental. Preparo para exámenes y proyectos de investigación.' }
+            let profs = [
+                { id: 1, name: 'Dr. Alejandro García', subjects: ['Matemáticas', 'Física', 'Química'], rating: 4.9, cost: '$25/hora', avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AG', bio: 'Doctor en Física con más de 10 años de experiencia enseñando a nivel universitario y pre-universitario. Me especializo en cálculos complejos y problemas de mecánica cuántica.' },
+                { id: 2, name: 'Lic. Sofía Robles', subjects: ['Literatura', 'Inglés'], rating: 4.7, cost: '$20/hora', avatar: 'https://via.placeholder.com/150/28a745/FFFFFF?text=SR', bio: 'Licenciada en Letras, experta en redacción, gramática e inglés avanzado. Clases dinámicas y personalizadas para todas las edades.' },
+                { id: 3, name: 'Ing. Carlos Mendoza', subjects: ['Programación', 'Matemáticas'], rating: 4.8, cost: '$30/hora', avatar: 'https://via.placeholder.com/150/dc3545/FFFFFF?text=CM', bio: 'Ingeniero de Software con pasión por la enseñanza. Domino Python, JavaScript y Java. Ayudo a estudiantes a entender la lógica de la programación.' },
+                { id: 4, name: 'Ms. Laura Torres', subjects: ['Historia', 'Literatura'], rating: 4.5, cost: '$22/hora', avatar: 'https://via.placeholder.com/150/ffc107/FFFFFF?text=LT', bio: 'Máster en Historia Antigua. Hago que el pasado cobre vida con mis clases interactivas y material exclusivo. ¡Descubre la historia de una forma divertida!' },
+                { id: 5, name: 'Biól. Pedro Ruiz', subjects: ['Biología', 'Química'], rating: 4.6, cost: '$23/hora', avatar: 'https://via.placeholder.com/150/17a2b8/FFFFFF?text=PR', bio: 'Biólogo apasionado por la vida. Clases de biología y química con enfoque práctico y experimental. Preparo para exámenes y proyectos de investigación.' }
             ];
 
-            var estudiantesMatch = [
-                { id: 1, nombre: 'María Lopez', intereses: ['Matemáticas', 'Física'], busca: 'Compañeros para grupo de estudio', avatar: 'https://via.placeholder.com/150/fd7e14/FFFFFF?text=ML' },
-                { id: 2, nombre: 'David Sánchez', intereses: ['Programación', 'Inglés'], busca: 'Amigos para practicar conversación y código', avatar: 'https://via.placeholder.com/150/6f42c1/FFFFFF?text=DS' },
-                { id: 3, nombre: 'Elena Vásquez', intereses: ['Literatura', 'Historia'], busca: 'Lectores para club de lectura', avatar: 'https://via.placeholder.com/150/e83e8c/FFFFFF?text=EV' }
+            let stusMatch = [
+                { id: 1, name: 'María Lopez', interests: ['Matemáticas', 'Física'], lookingFor: 'Compañeros para grupo de estudio', avatar: 'https://via.placeholder.com/150/fd7e14/FFFFFF?text=ML' },
+                { id: 2, name: 'David Sánchez', interests: ['Programación', 'Inglés'], lookingFor: 'Amigos para practicar conversación y código', avatar: 'https://via.placeholder.com/150/6f42c1/FFFFFF?text=DS' },
+                { id: 3, name: 'Elena Vásquez', interests: ['Literatura', 'Historia'], lookingFor: 'Lectores para club de lectura', avatar: 'https://via.placeholder.com/150/e83e8c/FFFFFF?text=EV' }
             ];
 
-            var listaProfesoresDiv = document.getElementById('lista-profesores');
-            var noProfesoresMsg = document.getElementById('no-profesores-msg');
-            var listaEstudiantesMatchDiv = document.getElementById('lista-estudiantes-match');
-            var noEstudiantesMsg = document.getElementById('no-estudiantes-msg');
+            let favProfs = JSON.parse(localStorage.getItem('favProfs')) || [];
 
-            var renderProfesores = function(profesoresToRender) {
-                listaProfesoresDiv.innerHTML = '';
-                if (profesoresToRender.length === 0) {
-                    noProfesoresMsg.style.display = 'block';
+            const profListDiv = document.getElementById('prof-list');
+            const noProfMsg = document.getElementById('no-prof-msg');
+            const favProfListDiv = document.getElementById('fav-prof-list');
+            const noFavProfMsg = document.getElementById('no-fav-prof-msg');
+            const estMatchListDiv = document.getElementById('est-match-list');
+            const noEstMsg = document.getElementById('no-est-msg');
+            const coursesSelect = document.getElementById('cursos-interes');
+            const searchProfBtn = document.getElementById('search-prof-btn');
+            const matchEstBtn = document.getElementById('match-est-btn');
+            const moreProfBtn = document.getElementById('more-prof-btn');
+            const logoutBtn = document.getElementById('logout-button');
+            const logoLink = document.querySelector('.logo a');
+
+            const modal = document.getElementById('profile-modal');
+            const closeModalBtn = document.querySelector('.close-button');
+            const modalAvatar = document.getElementById('modal-avatar');
+            const modalName = document.getElementById('modal-name');
+            const modalDetails = document.getElementById('modal-details');
+            const modalBio = document.getElementById('modal-bio');
+            const modalRating = document.getElementById('modal-rating');
+
+            const renderProfs = (profsToRender, container, noResultsMsg) => {
+                container.innerHTML = '';
+                if (profsToRender.length === 0) {
+                    noResultsMsg.style.display = 'block';
                 } else {
-                    noProfesoresMsg.style.display = 'none';
-                    profesoresToRender.forEach(function(profe) {
-                        var card = document.createElement('div');
+                    noResultsMsg.style.display = 'none';
+                    profsToRender.forEach(profe => {
+                        const card = document.createElement('div');
                         card.classList.add('review-card', 'docente-card');
+                        
+                        const isFavorited = favProfs.some(fav => fav.id === profe.id);
+                        const favBtnClass = isFavorited ? 'added' : '';
+                        const favBtnText = isFavorited ? 'Eliminar de Favoritos' : 'Añadir a Favoritos';
+
                         card.innerHTML = `
                             <div class="review-header">
-                                <span class="user-avatar"><img src="${profe.avatar}" alt="${profe.nombre}"></span>
+                                <span class="user-avatar"><img src="${profe.avatar}" alt="${profe.name}"></span>
                                 <div class="user-info">
-                                    <h4>${profe.nombre} <span class="badge positive">Disponible</span></h4>
-                                    <span class="review-date">Calificación: ${profe.calificacion} <i class="fas fa-star"></i></span>
+                                    <h4>${profe.name} <span class="badge positive">Disponible</span></h4>
+                                    <span class="review-date">Calificación: ${profe.rating} <i class="fas fa-star"></i></span>
                                 </div>
                             </div>
-                            <p class="review-text">Materias: ${profe.materias.join(', ')}</p>
-                            <p class="review-text">Costo: ${profe.costo}</p>
-                            <button class="option-btn view-profile-btn" data-profesor-id="${profe.id}">Ver Perfil</button>
+                            <p class="review-text">Materias: ${profe.subjects.join(', ')}</p>
+                            <p class="review-text">Costo: ${profe.cost}</p>
+                            <button class="option-btn view-profile-btn" data-id="${profe.id}" data-type="profesor">Ver Perfil</button>
+                            <button class="favorite-btn ${favBtnClass}" data-id="${profe.id}">${favBtnText}</button>
                         `;
-                        listaProfesoresDiv.appendChild(card);
+                        container.appendChild(card);
                     });
                 }
             };
 
-            var renderEstudiantesMatch = function(estudiantesToRender) {
-                listaEstudiantesMatchDiv.innerHTML = '';
-                if (estudiantesToRender.length === 0) {
-                    noEstudiantesMsg.style.display = 'block';
+            const renderStusMatch = (stusToRender) => {
+                estMatchListDiv.innerHTML = '';
+                if (stusToRender.length === 0) {
+                    noEstMsg.style.display = 'block';
                 } else {
-                    noEstudiantesMsg.style.display = 'none';
-                    estudiantesToRender.forEach(function(est) {
-                        var card = document.createElement('div');
+                    noEstMsg.style.display = 'none';
+                    stusToRender.forEach(stu => {
+                        const card = document.createElement('div');
                         card.classList.add('review-card', 'estudiante-match-card');
                         card.innerHTML = `
                             <div class="review-header">
-                                <span class="user-avatar"><img src="${est.avatar}" alt="${est.nombre}"></span>
+                                <span class="user-avatar"><img src="${stu.avatar}" alt="${stu.name}"></span>
                                 <div class="user-info">
-                                    <h4>${est.nombre}</h4>
-                                    <span class="review-date">Intereses: ${est.intereses.join(', ')}</span>
+                                    <h4>${stu.name}</h4>
+                                    <span class="review-date">Intereses: ${stu.interests.join(', ')}</span>
                                 </div>
                             </div>
-                            <p class="review-text">Busca: ${est.busca}</p>
+                            <p class="review-text">Busca: ${stu.lookingFor}</p>
+                            <button class="option-btn view-profile-btn" data-id="${stu.id}" data-type="estudiante">Ver Perfil</button>
                         `;
-                        listaEstudiantesMatchDiv.appendChild(card);
+                        estMatchListDiv.appendChild(card);
                     });
                 }
             };
 
-            document.getElementById('buscar-profesores-btn').addEventListener('click', function() {
-                var selectedCursos = Array.from(document.getElementById('cursos-interes').selectedOptions).map(function(option) { return option.value; });
+            const renderFavProfs = () => {
+                renderProfs(favProfs, favProfListDiv, noFavProfMsg);
+            };
 
-                if (selectedCursos.length === 0) {
-                    renderProfesores(profesores);
+            const saveFavProfs = () => {
+                localStorage.setItem('favProfs', JSON.stringify(favProfs));
+                renderFavProfs();
+                renderProfs(profs, profListDiv, noProfMsg);
+            };
+
+            searchProfBtn.addEventListener('click', () => {
+                const selectedCourses = Array.from(coursesSelect.selectedOptions).map(option => option.value);
+
+                if (selectedCourses.length === 0) {
+                    renderProfs(profs, profListDiv, noProfMsg);
                 } else {
-                    var filteredProfesores = profesores.filter(function(profe) {
-                        return selectedCursos.some(function(curso) { return profe.materias.includes(curso); });
-                    });
-                    renderProfesores(filteredProfesores);
+                    const filteredProfs = profs.filter(profe =>
+                        selectedCourses.some(course => profe.subjects.includes(course))
+                    );
+                    renderProfs(filteredProfs, profListDiv, noProfMsg);
                 }
             });
 
-            document.getElementById('match-estudiantes-btn').addEventListener('click', function() {
-                renderEstudiantesMatch(estudiantesMatch);
+            matchEstBtn.addEventListener('click', () => {
+                renderStusMatch(stusMatch);
             });
 
-            listaProfesoresDiv.addEventListener('click', function(event) {
+            document.addEventListener('click', (event) => {
                 if (event.target.classList.contains('view-profile-btn')) {
-                    var profesorId = parseInt(event.target.dataset.profesorId);
-                    var selectedProfe = profesores.find(function(profe) { return profe.id === profesorId; });
-                    if (selectedProfe) {
-                        alert(`Detalles del Profesor ${selectedProfe.nombre}:\nMaterias: ${selectedProfe.materias.join(', ')}\nCalificación: ${selectedProfe.calificacion}\nCosto: ${selectedProfe.costo}\nBio: ${selectedProfe.bio}`);
+                    const id = parseInt(event.target.dataset.id);
+                    const type = event.target.dataset.type;
+                    let item;
+
+                    if (type === 'profesor') {
+                        item = profs.find(p => p.id === id);
+                        if (item) {
+                            modalAvatar.src = item.avatar;
+                            modalName.textContent = item.name;
+                            modalDetails.innerHTML = `
+                                <strong>Materias:</strong> ${item.subjects.join(', ')}<br>
+                                <strong>Calificación:</strong> ${item.rating} <i class="fas fa-star"></i><br>
+                                <strong>Costo:</strong> ${item.cost}
+                            `;
+                            modalBio.textContent = `Bio: ${item.bio}`;
+                            modalRating.style.display = 'block';
+                            modalRating.querySelectorAll('.star').forEach(star => {
+                                star.classList.remove('selected');
+                                if (parseInt(star.dataset.value) <= Math.floor(item.rating)) {
+                                    star.classList.add('selected');
+                                }
+                            });
+                        }
+                    } else if (type === 'estudiante') {
+                        item = stusMatch.find(s => s.id === id);
+                        if (item) {
+                            modalAvatar.src = item.avatar;
+                            modalName.textContent = item.name;
+                            modalDetails.innerHTML = `
+                                <strong>Intereses:</strong> ${item.interests.join(', ')}<br>
+                                <strong>Busca:</strong> ${item.lookingFor}
+                            `;
+                            modalBio.textContent = '';
+                            modalRating.style.display = 'none';
+                        }
+                    }
+                    modal.style.display = 'flex';
+                }
+
+                if (event.target.classList.contains('favorite-btn')) {
+                    const profId = parseInt(event.target.dataset.id);
+                    const profe = profs.find(p => p.id === profId);
+
+                    if (profe) {
+                        const index = favProfs.findIndex(fav => fav.id === profId);
+                        if (index === -1) {
+                            favProfs.push(profe);
+                            event.target.classList.add('added');
+                            event.target.textContent = 'Eliminar de Favoritos';
+                            alert(`"${profe.name}" ha sido añadido a tus favoritos.`);
+                        } else {
+                            favProfs.splice(index, 1);
+                            event.target.classList.remove('added');
+                            event.target.textContent = 'Añadir a Favoritos';
+                            alert(`"${profe.name}" ha sido eliminado de tus favoritos.`);
+                        }
+                        saveFavProfs();
                     }
                 }
             });
 
-            document.getElementById('ver-mas-profesores').addEventListener('click', function() {
+            closeModalBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            modalRating.addEventListener('click', (event) => {
+                if (event.target.classList.contains('star')) {
+                    const ratingValue = parseInt(event.target.dataset.value);
+                    const stars = modalRating.querySelectorAll('.star');
+                    stars.forEach(star => {
+                        if (parseInt(star.dataset.value) <= ratingValue) {
+                            star.classList.add('selected');
+                        } else {
+                            star.classList.remove('selected');
+                        }
+                    });
+                    alert(`Has calificado con ${ratingValue} estrellas.`);
+                }
+            });
+
+            moreProfBtn.addEventListener('click', () => {
                 window.location.href = 'index (2).html';
             });
 
-            document.getElementById('logout-button').addEventListener('click', function(e) {
+            logoutBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 alert('Sesión cerrada.');
                 window.location.href = 'index.html';
             });
 
-            document.querySelector('.logo a').addEventListener('click', function(e) {
+            logoLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 window.location.href = 'index.html';
             });
 
-            renderProfesores(profesores);
+            renderProfs(profs, profListDiv, noProfMsg);
+            renderFavProfs();
         });
     </script>
 </body>

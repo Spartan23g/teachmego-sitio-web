@@ -12,75 +12,75 @@
         <nav class="main-nav">
             <div class="logo"><a href="index.html">TeachMeGo</a></div>
             <ul class="nav-links">
-                <li><a href="#community-section" id="community-nav-link" data-target-section="community-section">Comunidad</a></li>
-                <li><a href="#" id="how-it-works-nav-link" data-target-section="how-it-works-section">Cómo Funciona</a></li>
-                <li><a href="#" id="about-us-nav-link" data-target-section="about-us-section">Acerca de Nosotros</a></li>
-                <li><span id="user-email-display" class="hidden user-display-info"></span></li>
-                <li><a href="#" id="logout-button" class="btn-secondary hidden">Cerrar Sesión</a></li>
-                <li><a href="#" id="login-button" class="btn-secondary">Iniciar Sesión</a></li>
+                <li><a href="#community-section" id="enlace-nav-comunidad" data-target-section="community-section">Comunidad</a></li>
+                <li><a href="#" id="enlace-nav-como-funciona" data-target-section="how-it-works-section">Cómo Funciona</a></li>
+                <li><a href="#" id="enlace-nav-acerca-nosotros" data-target-section="about-us-section">Acerca de Nosotros</a></li>
+                <li><span id="mostrar-email-usuario" class="hidden user-display-info"></span></li>
+                <li><a href="#" id="boton-cerrar-sesion" class="btn-secondary hidden">Cerrar Sesión</a></li>
+                <li><a href="#" id="boton-inicio-sesion-cabecera" class="btn-secondary">Iniciar Sesión</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="main-content-wrapper">
         <div class="background-image-container"></div>
-        <div class="initial-hero-section" id="initial-hero-section">
+        <div class="initial-hero-section" id="seccion-hero-inicial">
             <h1><span class="no-break">Conecta con el conocimiento</span><br>¡aprende o enseña!</h1>
-            <a href="#" id="go-to-register" class="btn-primary">Crear Cuenta</a>
+            <a href="#" id="btn-ir-a-registro-hero" class="btn-primary">Crear Cuenta</a>
         </div>
 
-        <div class="login-container" id="login-container">
-            <div id="welcome-screen" class="screen">
+        <div class="login-container" id="contenedor-inicio-sesion">
+            <div id="pantalla-bienvenida" class="screen">
                 <h1>Bienvenido a TeachMeGo</h1>
                 <p class="subtitle">¡Conéctate con el aprendizaje que te impulsa!</p>
                 <div class="options-wrapper">
-                    <button id="register-alumno-btn" class="option-btn">Registrarme como Alumno</button>
-                    <button id="register-docente-btn" class="option-btn teacher-btn">Registrarme como Docente</button>
+                    <button id="btn-registrar-alumno" class="option-btn">Registrarme como Alumno</button>
+                    <button id="btn-registrar-docente" class="option-btn teacher-btn">Registrarme como Docente</button>
                 </div>
-                <p class="login-link">¿Ya tienes una cuenta? <a href="#" id="show-login-from-welcome">Iniciar Sesión</a></p>
+                <p class="login-link">¿Ya tienes una cuenta? <a href="#" id="enlace-mostrar-inicio-sesion-desde-bienvenida">Iniciar Sesión</a></p>
             </div>
 
-            <div id="alumno-register-form" class="screen">
+            <div id="formulario-registro-alumno" class="screen">
                 <h2>Registro de Alumno</h2>
-                <form id="form-alumno-register">
-                    <div class="form-group"><label for="alumno-nombres" class="input-label">Nombres</label><input type="text" id="alumno-nombres" placeholder="Tus nombres" required></div>
-                    <div class="form-group"><label for="alumno-apellidos" class="input-label">Apellidos</label><input type="text" id="alumno-apellidos" placeholder="Tus apellidos" required></div>
-                    <div class="form-group"><label for="fecha-nacimiento-alumno" class="input-label">Fecha de Nacimiento</label><input type="date" id="fecha-nacimiento-alumno" required><p id="edad-display-alumno" class="info-text"></p></div>
-                    <div class="form-group"><label for="sexo-alumno" class="input-label">Sexo</label><select id="sexo-alumno" required><option value="">Selecciona tu sexo</option><option value="masculino">Masculino</option><option value="femenino">Femenino</option><option value="otro">Otro</option></select></div>
-                    <div class="form-group"><label for="region-alumno" class="input-label">Región (Perú)</label><select id="region-alumno" required><option value="">Selecciona tu región</option><option value="lima">Lima</option><option value="arequipa">Arequipa</option><option value="cusco">Cusco</option><option value="huanuco">Huánuco</option><option value="otros">Otros</option></select></div>
-                    <div class="form-group"><label for="email-alumno" class="input-label">Correo Electrónico</label><input type="email" id="email-alumno" placeholder="tu.correo@example.com" required></div>
-                    <div class="form-group"><label for="password-alumno" class="input-label">Contraseña</label><input type="password" id="password-alumno" placeholder="Mínimo 6 caracteres" required></div>
-                    <div class="form-group"><label for="confirm-password-alumno" class="input-label">Confirmar Contraseña</label><input type="password" id="confirm-password-alumno" placeholder="Repite tu contraseña" required></div>
+                <form id="form-registro-alumno">
+                    <div class="form-group"><label for="input-nombres-alumno" class="input-label">Nombres</label><input type="text" id="input-nombres-alumno" placeholder="Tus nombres" required></div>
+                    <div class="form-group"><label for="input-apellidos-alumno" class="input-label">Apellidos</label><input type="text" id="input-apellidos-alumno" placeholder="Tus apellidos" required></div>
+                    <div class="form-group"><label for="input-fecha-nacimiento-alumno" class="input-label">Fecha de Nacimiento</label><input type="date" id="input-fecha-nacimiento-alumno" required><p id="mostrar-edad-alumno" class="info-text"></p></div>
+                    <div class="form-group"><label for="select-sexo-alumno" class="input-label">Sexo</label><select id="select-sexo-alumno" required><option value="">Selecciona tu sexo</option><option value="masculino">Masculino</option><option value="femenino">Femenino</option><option value="otro">Otro</option></select></div>
+                    <div class="form-group"><label for="select-region-alumno" class="input-label">Región (Perú)</label><select id="select-region-alumno" required><option value="">Selecciona tu región</option><option value="lima">Lima</option><option value="arequipa">Arequipa</option><option value="cusco">Cusco</option><option value="huanuco">Huánuco</option><option value="otros">Otros</option></select></div>
+                    <div class="form-group"><label for="input-email-alumno" class="input-label">Correo Electrónico</label><input type="email" id="input-email-alumno" placeholder="tu.correo@example.com" required></div>
+                    <div class="form-group"><label for="input-password-alumno" class="input-label">Contraseña</label><input type="password" id="input-password-alumno" placeholder="Mínimo 6 caracteres" required></div>
+                    <div class="form-group"><label for="input-confirmar-password-alumno" class="input-label">Confirmar Contraseña</label><input type="password" id="input-confirmar-password-alumno" placeholder="Repite tu contraseña" required></div>
                     <button type="submit" class="option-btn">Registrar Alumno</button>
                 </form>
-                <p class="back-link"><a href="#" id="back-to-welcome-alumno">← Volver</a></p>
+                <p class="back-link"><a href="#" id="btn-volver-bienvenida-alumno">← Volver</a></p>
             </div>
 
-            <div id="docente-register-form" class="screen">
+            <div id="formulario-registro-docente" class="screen">
                 <h2>Registro de Docente</h2>
-                <form id="form-docente-register">
-                    <div class="form-group"><label for="docente-nombres" class="input-label">Nombres</label><input type="text" id="docente-nombres" placeholder="Tus nombres" required></div>
-                    <div class="form-group"><label for="docente-apellidos" class="input-label">Apellidos</label><input type="text" id="docente-apellidos" placeholder="Tus apellidos" required></div>
-                    <div class="form-group"><label for="fecha-nacimiento-docente" class="input-label">Fecha de Nacimiento</label><input type="date" id="fecha-nacimiento-docente" required><p id="edad-display-docente" class="info-text"></p></div>
-                    <div class="form-group"><label for="sexo-docente" class="input-label">Sexo</label><select id="sexo-docente" required><option value="">Selecciona tu sexo</option><option value="masculino">Masculino</option><option value="femenino">Femenino</option><option value="otro">Otro</option></select></div>
-                    <div class="form-group"><label for="region-docente" class="input-label">Región (Perú)</label><select id="region-docente" required><option value="">Selecciona tu región</option><option value="lima">Lima</option><option value="arequipa">Arequipa</option><option value="cusco">Cusco</option><option value="huanuco">Huánuco</option><option value="otros">Otros</option></select></div>
-                    <div class="form-group"><label for="docente-email" class="input-label">Correo Electrónico</label><input type="email" id="docente-email" placeholder="tu.correo.docente@example.com" required></div>
-                    <div class="form-group"><label for="docente-password" class="input-label">Contraseña</label><input type="password" id="docente-password" placeholder="Mínimo 6 caracteres" required></div>
-                    <div class="form-group"><label for="docente-confirm-password" class="input-label">Confirmar Contraseña</label><input type="password" id="docente-confirm-password" placeholder="Repite tu contraseña" required></div>
+                <form id="form-registro-docente">
+                    <div class="form-group"><label for="input-nombres-docente" class="input-label">Nombres</label><input type="text" id="input-nombres-docente" placeholder="Tus nombres" required></div>
+                    <div class="form-group"><label for="input-apellidos-docente" class="input-label">Apellidos</label><input type="text" id="input-apellidos-docente" placeholder="Tus apellidos" required></div>
+                    <div class="form-group"><label for="input-fecha-nacimiento-docente" class="input-label">Fecha de Nacimiento</label><input type="date" id="input-fecha-nacimiento-docente" required><p id="mostrar-edad-docente" class="info-text"></p></div>
+                    <div class="form-group"><label for="select-sexo-docente" class="input-label">Sexo</label><select id="select-sexo-docente" required><option value="">Selecciona tu sexo</option><option value="masculino">Masculino</option><option value="femenino">Femenino</option><option value="otro">Otro</option></select></div>
+                    <div class="form-group"><label for="select-region-docente" class="input-label">Región (Perú)</label><select id="select-region-docente" required><option value="">Selecciona tu región</option><option value="lima">Lima</option><option value="arequipa">Arequipa</option><option value="cusco">Cusco</option><option value="huanuco">Huánuco</option><option value="otros">Otros</option></select></div>
+                    <div class="form-group"><label for="input-email-docente" class="input-label">Correo Electrónico</label><input type="email" id="input-email-docente" placeholder="tu.correo.docente@example.com" required></div>
+                    <div class="form-group"><label for="input-password-docente" class="input-label">Contraseña</label><input type="password" id="input-password-docente" placeholder="Mínimo 6 caracteres" required></div>
+                    <div class="form-group"><label for="input-confirmar-password-docente" class="input-label">Confirmar Contraseña</label><input type="password" id="input-confirmar-password-docente" placeholder="Repite tu contraseña" required></div>
                     <button type="submit" class="option-btn teacher-btn">Registrar Docente</button>
                 </form>
-                <p class="back-link"><a href="#" id="back-to-welcome-docente">← Volver</a></p>
+                <p class="back-link"><a href="#" id="btn-volver-bienvenida-docente">← Volver</a></p>
             </div>
 
-            <div id="login-screen" class="screen">
+            <div id="pantalla-inicio-sesion" class="screen">
                 <h2>Iniciar Sesión</h2>
-                <form id="login-form">
-                    <div class="form-group"><label for="login-email" class="input-label">Correo Electrónico</label><input type="email" id="login-email" placeholder="tu.correo@example.com" required></div>
-                    <div class="form-group"><label for="login-password" class="input-label">Contraseña</label><input type="password" id="login-password" placeholder="Tu contraseña" required></div>
+                <form id="form-inicio-sesion">
+                    <div class="form-group"><label for="input-email-inicio-sesion" class="input-label">Correo Electrónico</label><input type="email" id="input-email-inicio-sesion" placeholder="tu.correo@example.com" required></div>
+                    <div class="form-group"><label for="input-password-inicio-sesion" class="input-label">Contraseña</label><input type="password" id="input-password-inicio-sesion" placeholder="Tu contraseña" required></div>
                     <button type="submit" class="option-btn">Acceder</button>
                 </form>
-                <p class="login-link">¿No tienes cuenta? <a href="#" id="show-register-from-login">Crea una aquí</a></p>
-                <p class="back-link"><a href="#" id="back-to-welcome-login">← Volver</a></p>
+                <p class="login-link">¿No tienes cuenta? <a href="#" id="enlace-mostrar-registro-desde-inicio-sesion">Crea una aquí</a></p>
+                <p class="back-link"><a href="#" id="btn-volver-bienvenida-inicio-sesion">← Volver</a></p>
             </div>
         </div>
 
@@ -88,7 +88,7 @@
             <div class="community-container">
                 <h2>Nuestra Comunidad Habla</h2>
                 <p class="subtitle">Descubre lo que nuestros usuarios piensan y comparte tus propias ideas.</p>
-                <div class="review-grid">
+                <div class="review-grid" id="cuadrilla-resenas">
                     <div class="review-card" data-review-id="review-1">
                         <div class="review-header">
                             <span class="user-avatar"><i class="fas fa-user-circle"></i></span>
@@ -138,17 +138,17 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn-primary post-review-btn" id="show-review-form-btn">Dejar un Comentario</button>
-                <div id="review-form-container" class="hidden">
+                <button class="btn-primary post-review-btn" id="btn-mostrar-formulario-resena">Dejar un Comentario</button>
+                <div id="contenedor-formulario-resena" class="hidden">
                     <h3>Escribe tu Reseña</h3>
-                    <form id="review-form" class="review-form">
-                        <div class="form-group"><label for="review-email" class="input-label">Tu Correo Electrónico</label><input type="email" id="review-email" placeholder="Ingresa tu correo registrado" required></div>
-                        <div class="form-group"><label for="review-text" class="input-label">Tu Comentario</label><textarea id="review-text" placeholder="Comparte tu experiencia o sugerencia" rows="5" required></textarea></div>
-                        <div class="form-group"><label for="review-rating" class="input-label">Calificación (1-5)</label><input type="number" id="review-rating" min="1" max="5" value="5" required></div>
-                        <div class="form-group"><label for="review-type" class="input-label">Tipo de Comentario</label><select id="review-type" required><option value="positive">Positivo</option><option value="neutral">Sugerencia</option><option value="negative">Problema</option></select></div>
+                    <form id="formulario-resena" class="review-form">
+                        <div class="form-group"><label for="input-email-resena" class="input-label">Tu Correo Electrónico</label><input type="email" id="input-email-resena" placeholder="Ingresa tu correo registrado" required></div>
+                        <div class="form-group"><label for="input-texto-resena" class="input-label">Tu Comentario</label><textarea id="input-texto-resena" placeholder="Comparte tu experiencia o sugerencia" rows="5" required></textarea></div>
+                        <div class="form-group"><label for="input-calificacion-resena" class="input-label">Calificación (1-5)</label><input type="number" id="input-calificacion-resena" min="1" max="5" value="5" required></div>
+                        <div class="form-group"><label for="select-tipo-resena" class="input-label">Tipo de Comentario</label><select id="select-tipo-resena" required><option value="positive">Positivo</option><option value="neutral">Sugerencia</option><option value="negative">Problema</option></select></div>
                         <div class="form-actions">
                             <button type="submit" class="option-btn">Enviar Reseña</button>
-                            <button type="button" id="cancel-review-btn" class="btn-secondary">Cancelar</button>
+                            <button type="button" id="btn-cancelar-resena" class="btn-secondary">Cancelar</button>
                         </div>
                     </form>
                 </div>
@@ -196,187 +196,6 @@
             <p>Tu futuro empieza con el "docente perfecto".</p>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var loginForm = document.getElementById('login-form');
-            var loginEmailInput = document.getElementById('login-email');
-
-            // Lógica para el formulario de INICIO DE SESIÓN
-            loginForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                // Redirige a estudiante_dashboard.html para cualquier correo en el login
-                window.location.href = 'estudiante_dashboard.html';
-            });
-
-            // Lógica para el formulario de REGISTRO DE ALUMNO
-            var formAlumnoRegister = document.getElementById('form-alumno-register');
-            formAlumnoRegister.addEventListener('submit', function(event) {
-                event.preventDefault();
-                // Aquí podrías agregar lógica para enviar los datos a un servidor
-                alert('Registro de Alumno exitoso (simulado). Redirigiendo...');
-                window.location.href = 'estudiante_dashboard.html';
-            });
-
-            // Lógica para el formulario de REGISTRO DE DOCENTE
-            var formDocenteRegister = document.getElementById('form-docente-register');
-            formDocenteRegister.addEventListener('submit', function(event) {
-                event.preventDefault();
-                // Aquí podrías agregar lógica para enviar los datos a un servidor
-                alert('Registro de Docente exitoso (simulado). Redirigiendo...');
-                window.location.href = 'profesor_dashboard.html';
-            });
-
-
-            var showScreen = function(screenId) {
-                document.querySelectorAll('.screen').forEach(function(screen) {
-                    screen.classList.remove('active');
-                });
-                document.getElementById(screenId).classList.add('active');
-                var loginContainer = document.getElementById('login-container');
-                if (screenId === 'welcome-screen') {
-                    loginContainer.style.maxWidth = '480px';
-                } else {
-                    loginContainer.style.maxWidth = '550px';
-                }
-            };
-
-            document.getElementById('go-to-register').addEventListener('click', function(e) {
-                e.preventDefault();
-                showScreen('welcome-screen');
-                document.getElementById('initial-hero-section').classList.add('hidden');
-            });
-
-            document.getElementById('register-alumno-btn').addEventListener('click', function() { showScreen('alumno-register-form'); });
-            document.getElementById('register-docente-btn').addEventListener('click', function() { showScreen('docente-register-form'); });
-            document.getElementById('show-login-from-welcome').addEventListener('click', function(e) {
-                e.preventDefault();
-                showScreen('login-screen');
-            });
-            document.getElementById('back-to-welcome-alumno').addEventListener('click', function(e) {
-                e.preventDefault();
-                showScreen('welcome-screen');
-            });
-            document.getElementById('back-to-welcome-docente').addEventListener('click', function(e) {
-                e.preventDefault();
-                showScreen('welcome-screen');
-            });
-            document.getElementById('show-register-from-login').addEventListener('click', function(e) {
-                e.preventDefault();
-                showScreen('welcome-screen');
-            });
-            document.getElementById('back-to-welcome-login').addEventListener('click', function(e) {
-                e.preventDefault();
-                showScreen('welcome-screen');
-            });
-
-            var navLinks = document.querySelectorAll('.main-nav .nav-links a');
-            var sections = document.querySelectorAll('.main-content-wrapper section');
-
-            navLinks.forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    var targetSectionId = this.dataset.targetSection;
-
-                    if (targetSectionId) {
-                        e.preventDefault();
-                        document.querySelectorAll('.login-container .screen').forEach(function(screen) { screen.classList.remove('active'); });
-                        document.getElementById('login-container').classList.add('hidden');
-
-                        document.getElementById('initial-hero-section').classList.add('hidden');
-
-                        sections.forEach(function(section) {
-                            section.classList.remove('active');
-                            section.classList.add('hidden');
-                        });
-                        document.getElementById(targetSectionId).classList.remove('hidden');
-                        document.getElementById(targetSectionId).classList.add('active');
-                    } else if (this.id === 'login-button') {
-                        e.preventDefault();
-                        document.getElementById('initial-hero-section').classList.add('hidden');
-                        sections.forEach(function(section) {
-                            section.classList.remove('active');
-                            section.classList.add('hidden');
-                        });
-                        document.getElementById('login-container').classList.remove('hidden');
-                        showScreen('login-screen');
-                    }
-                });
-            });
-
-            document.getElementById('go-to-register').addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('initial-hero-section').classList.add('hidden');
-                document.getElementById('login-container').classList.remove('hidden');
-                showScreen('welcome-screen');
-            });
-
-            document.getElementById('initial-hero-section').classList.remove('hidden');
-            document.getElementById('login-container').classList.add('hidden');
-
-            sections.forEach(function(section) {
-                if (section.id !== 'initial-hero-section') {
-                    section.classList.add('hidden');
-                }
-            });
-
-            var calculateAge = function(dateOfBirthId, displayId) {
-                var dobInput = document.getElementById(dateOfBirthId);
-                var ageDisplay = document.getElementById(displayId);
-
-                dobInput.addEventListener('change', function() {
-                    var dob = new Date(this.value);
-                    var today = new Date();
-                    var age = today.getFullYear() - dob.getFullYear();
-                    var m = today.getMonth() - dob.getMonth();
-                    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-                        age--;
-                    }
-                    if (this.value) {
-                        ageDisplay.textContent = `Edad: ${age} años`;
-                    } else {
-                        ageDisplay.textContent = '';
-                    }
-                });
-            };
-
-            calculateAge('fecha-nacimiento-alumno', 'edad-display-alumno');
-            calculateAge('fecha-nacimiento-docente', 'edad-display-docente');
-
-            document.getElementById('show-review-form-btn').addEventListener('click', function() {
-                document.getElementById('review-form-container').classList.remove('hidden');
-                this.classList.add('hidden');
-            });
-
-            document.getElementById('cancel-review-btn').addEventListener('click', function() {
-                document.getElementById('review-form-container').classList.add('hidden');
-                document.getElementById('show-review-form-btn').classList.remove('hidden');
-                document.getElementById('review-form').reset();
-            });
-
-            document.getElementById('review-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Reseña enviada (simulado).');
-                document.getElementById('review-form-container').classList.add('hidden');
-                document.getElementById('show-review-form-btn').classList.remove('hidden');
-                this.reset();
-            });
-
-            document.querySelector('.logo a').addEventListener('click', function(e) {
-                e.preventDefault();
-                sections.forEach(function(section) {
-                    section.classList.add('hidden');
-                    section.classList.remove('active');
-                });
-                document.getElementById('login-container').classList.add('hidden');
-                document.getElementById('initial-hero-section').classList.remove('hidden');
-                document.getElementById('initial-hero-section').classList.add('active');
-            });
-
-            document.getElementById('logout-button').addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('Sesión cerrada (simulado).');
-                window.location.href = 'index.html';
-            });
-        });
-    </script>
+     <script src="script (1).js"></script>
 </body>
 </html>
